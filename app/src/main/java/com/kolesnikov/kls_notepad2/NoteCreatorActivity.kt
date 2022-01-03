@@ -27,6 +27,8 @@ class NoteCreatorActivity : AppCompatActivity() {
             val description = this.description.text.toString()
             val note = Note(0, title, description)
             repository.addNote(note)
+            onBackPressed()
+
         }
     }
 }
