@@ -13,6 +13,7 @@ class NoteCreatorActivity : AppCompatActivity() {
     private lateinit var description: EditText
     private lateinit var button: Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_creator)

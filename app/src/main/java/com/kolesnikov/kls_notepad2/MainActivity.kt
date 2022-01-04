@@ -2,11 +2,13 @@ package com.kolesnikov.kls_notepad2
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.kolesnikov.kls_notepad2.database.NoteDBHalper
+import com.kolesnikov.kls_notepad2.repository.NoteDeleteActivity
 import com.kolesnikov.kls_notepad2.repository.Repository
 import com.kolesnikov.kls_notepad2.repository.SqlRepository
 
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         recycler.layoutManager = LinearLayoutManager(this)
         button = findViewById(R.id.floatingActionButton)
         button.setOnClickListener {
-            val intent = Intent (this,NoteCreatorActivity::class.java)
+            val intent = Intent (this, NoteCreatorActivity::class.java)
             startActivityForResult(intent, 0)
         }
         getNotes()
@@ -42,6 +44,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(id: Int) {
-        println("$id clicked")
+        val intent = Intent(this, NoteDeleteActivity::class.java)
+        intent.putExtra("Key", id)
+        startActivity(intent)
     }
 }

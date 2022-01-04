@@ -1,9 +1,9 @@
 package com.kolesnikov.kls_notepad2.repository
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.kolesnikov.kls_notepad2.R
 
 class NoteDeleteActivity : AppCompatActivity() {
@@ -15,13 +15,15 @@ class NoteDeleteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_delete)
 
+        val id = intent.getIntExtra("Key", 0)
+        println(id)
+
         title = findViewById(R.id.title)
         description = findViewById(R.id.description)
         button = findViewById(R.id.delete_button)
         button.setOnClickListener {
-            
-        }
 
+        }
 
 
     }
