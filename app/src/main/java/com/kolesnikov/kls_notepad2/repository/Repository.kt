@@ -8,3 +8,4 @@ interface Repository {
     fun getAllNotes(): ArrayList<Note>
     fun getNote(id: Int): Note?
 }
+// сделать отдельный запрос на удаление note
