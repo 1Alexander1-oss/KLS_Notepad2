@@ -3,13 +3,12 @@ package com.kolesnikov.kls_notepad2.repository
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.provider.BaseColumns._ID
+import android.provider.BaseColumns
 import com.kolesnikov.kls_notepad2.database.NoteDB
 import com.kolesnikov.kls_notepad2.database.NoteDBHalper
 import com.kolesnikov.kls_notepad2.entity.Note
 
-class SqlRepository(dbHalper: NoteDBHalper) :
-    Repository {
+class SqlRepository(dbHalper: NoteDBHalper) : Repository {
     private val database: SQLiteDatabase? = dbHalper.writableDatabase
     private lateinit var contentValues: ContentValues
 
@@ -52,7 +51,7 @@ class SqlRepository(dbHalper: NoteDBHalper) :
             if (descriptionIndex >= 0) {
                 description = cursor.getString(descriptionIndex)
             }
-            val idIndex = cursor.getColumnIndex(_ID)
+            val idIndex = cursor.getColumnIndex(BaseColumns._ID)
             if (idIndex >= 0) {
                 id = cursor.getInt(idIndex)
             }
@@ -62,5 +61,25 @@ class SqlRepository(dbHalper: NoteDBHalper) :
         cursor.close()
         return notes
     }
+
+    override fun getNote(id: Int): Note? {
+        val selectQuery = "SELECT * FROM ${NoteDB.TABLE_NAME} WHERE ${BaseColumns._ID} = ?"
+        val cursor: Cursor? =
+            database?.rawQuery(selectQuery, arrayOf("$id")).apply {
+                this ?: return null
+                if (moveToFirst()){
+                    return Note(
+                        getInt(getColumnIndex(BaseColumns._ID) ?: 0),
+                        getString(getColumnIndex(NoteDB.COLUMN_NAME_TITLE) ?: 0),
+                        getString(getColumnIndex(NoteDB.COLUMN_NAME_DESCRIPTION) ?: 0)
+                    )
+                }
+            }.also { it?.close() }
+
+        return null
+    }
 }
-// вызвать метод ADDNote
+// вывести на экран - доделать!
+// 3) При нажатии на кнопку "удалить"Ю использовать ранее полученный id для запроса удаления Note из Базы Данных
+
+
