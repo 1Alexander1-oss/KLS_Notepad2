@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.kolesnikov.kls_notepad2.database.NoteDBHalper
-import com.kolesnikov.kls_notepad2.entity.Note
 import com.kolesnikov.kls_notepad2.repository.Repository
 import com.kolesnikov.kls_notepad2.repository.SqlRepository
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemClickListener {
     private lateinit var button: FloatingActionButton
     private lateinit var recycler: RecyclerView
     private lateinit var repository: Repository
@@ -33,12 +32,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun getNotes(){
         val notes = repository.getAllNotes()
-        val adapter = NoteAdapter(notes)
+        val adapter = NoteAdapter(notes, this)
         recycler.adapter = adapter
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         getNotes()
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onItemClick(id: Int) {
+        println("$id clicked")
     }
 }

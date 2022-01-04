@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".NoteCreatorActivity">
+    tools:context=".repository.NoteDeleteActivity"
+    android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Заголовок" />
+        tools:text="Заголовок"
+        android:textSize="30dp"/>
 
-    <EditText
+    <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         android:layout_weight="1"
+        android:layout_height="0dp"
         android:gravity="start"
-        android:hint="Описание" />
+        android:textSize="24dp"
+        android:layout_marginTop="16dp"
+        tools:text="Описание"/>
 
     <Button
-        android:id="@+id/save_button"
+        android:id="@+id/delete_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Сохранить"
-        android:gravity="end"/>
-
-
+        android:text="Удалить"
+        android:gravity="center"/>
 </LinearLayout>

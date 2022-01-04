@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KLS_Notepad2">
         <activity
+            android:name=".repository.NoteDeleteActivity"
+            android:exported="false" />
+        <activity
             android:name=".NoteCreatorActivity"
             android:exported="false" />
         <activity
